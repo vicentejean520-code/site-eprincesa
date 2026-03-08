@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Para minha Princesa ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+color:white;
+text-align:center;
+overflow:hidden;
+background:linear-gradient(135deg,#020024,#090979,#000428);
+background-size:400% 400%;
+animation:bg 12s infinite alternate;
+}
+
+@keyframes bg{
+0%{background-position:left}
+100%{background-position:right}
+}
+
+.container{
+margin-top:70px;
+padding:20px;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:4rem;
+color:#b8d7ff;
+text-shadow:0 0 10px rgba(255,255,255,0.4);
+}
+
+.subtitle{
+margin-bottom:30px;
+}
+
+.counter{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
+
+.box{
+background:rgba(255,255,255,0.12);
+padding:20px;
+border-radius:15px;
+font-size:2rem;
+min-width:90px;
+backdrop-filter:blur(8px);
+font-weight:600;
+}
+
+.label{
+font-size:0.8rem;
+opacity:0.8;
+}
+
+.music-btn{
+background:#1f6fff;
+border:none;
+padding:12px 22px;
+border-radius:10px;
+font-size:16px;
+color:white;
+cursor:pointer;
+}
+
+.music-btn:hover{
+background:#3d85ff;
+}
+
+.message{
+margin-top:30px;
+font-size:1.1rem;
+line-height:1.7;
+min-height:120px;
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Para minha Princesa 💙</h1>
+
+<p class="subtitle">
+Juntos desde 7 de janeiro de 2026 ❤️
+</p>
+
+<div class="counter">
+
+<div class="box">
+<div id="days">0</div>
+<div class="label">Dias</div>
+</div>
+
+<div class="box">
+<div id="hours">0</div>
+<div class="label">Horas</div>
+</div>
+
+<div class="box">
+<div id="minutes">0</div>
+<div class="label">Min</div>
+</div>
+
+<div class="box">
+<div id="seconds">0</div>
+<div class="label">Seg</div>
+</div>
+
+</div>
+
+<div class="message" id="romanticText"></div>
+
+<button class="music-btn" onclick="playMusic()">🎵 Tocar nossa música</button>
+
+<div id="player" style="display:none;"></div>
+
+</div>
+
+<script>
+
+const startDate = new Date(2026,0,7);
+
+function updateCounter(){
+
+const now = new Date();
+const diff = now - startDate;
+
+const days = Math.floor(diff/(1000*60*60*24));
+const hours = Math.floor((diff/(1000*60*60))%24);
+const minutes = Math.floor((diff/(1000*60))%60);
+const seconds = Math.floor((diff/1000)%60);
+
+daysEl.textContent = days;
+hoursEl.textContent = hours;
+minutesEl.textContent = minutes;
+secondsEl.textContent = seconds;
+
+}
+
+const daysEl=document.getElementById("days");
+const hoursEl=document.getElementById("hours");
+const minutesEl=document.getElementById("minutes");
+const secondsEl=document.getElementById("seconds");
+
+setInterval(updateCounter,1000);
+updateCounter();
+
+function playMusic(){
+
+document.getElementById("player").innerHTML=
+`<iframe width="0" height="0"
+src="https://www.youtube.com/embed/MDm1bNkcb2I?autoplay=1&loop=1&playlist=MDm1bNkcb2I"
+frameborder="0"
+allow="autoplay">
+</iframe>`;
+
+typeWriter();
+
+}
+
+function createHeart(){
+
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💙";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*5+5)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),8000);
+
+}
+
+setInterval(createHeart,400);
+
+const text = `Desde o dia que você entrou na minha vida,
+tudo ficou mais bonito.
+
+Cada momento com você se tornou especial,
+cada conversa, cada risada.
+
+Obrigado por estar comigo esse tempo todo.
+
+mesmo nao estando com vc eu vou te amar para sempre e
+querer viver muitos momentos incríveis
+ao seu lado. ❤️`;
+
+let i=0;
+
+function typeWriter(){
+
+if(i < text.length){
+document.getElementById("romanticText").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter,35);
+}
+
+}
+
+</script>
+
+</body>
+</html>
